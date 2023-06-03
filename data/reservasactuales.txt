@@ -1,0 +1,2 @@
+id Reserva;fechaIn;fechaFin;documento titular;documentosGrupo;niños;habitacionesreservadas;totalEstadía 
+0

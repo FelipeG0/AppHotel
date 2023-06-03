@@ -1,0 +1,2 @@
+nombreHotel;parqueaderoPago;Piscina;zonasHumedas;bbq;wifiGratis;recep24horas;mascotas;numeroDeCuenta 
+HotelPrueba;false;true;turco-jacuzzi;true;true;true;true;0000000000

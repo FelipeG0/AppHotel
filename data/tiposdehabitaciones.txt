@@ -1,0 +1,4 @@
+tipo;capacidadMax;camasDobles;camasSencillas;tamanioMetros;aireAcondicionado;calefaccion;tv;cafetera;ropaCama;tapeteHipoalergenico;plancha;secadorDePelo;voltajeAC;usbA;usbC
+estandar;4;1;2;30;true;false;true;false;true;false;true;false;110;false;false
+suite;6;2;2;40;true;true;true;true;true;true;true;true;110;true;false
+suite doble;8;3;2;60;true;true;true;true;true;true;true;true;220;true;true

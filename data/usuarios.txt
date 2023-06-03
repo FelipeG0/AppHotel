@@ -1,0 +1,13 @@
+username;password;usertype
+papigelvez;fdnqwowf;2
+pepito;fjwofqwe;1
+juan;341234;3
+papig;314fd;2
+papichulo;123;1
+papichulo1;1234;1
+Felipe;Password;1
+Andres;a;2
+a;a;2
+felipe;felipe;1
+z;z;1
+q;q;1

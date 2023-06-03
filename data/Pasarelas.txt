@@ -1,0 +1,4 @@
+RutaPasarela
+ProcesoDePago.PayPal
+ProcesoDePago.PayU
+ProcesoDePago.Sire

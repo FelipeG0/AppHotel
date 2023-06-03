@@ -1,0 +1,1 @@
+id;ubicacion(piso);tipo;tienebalcon;tienevista;tienecocina;disponible
