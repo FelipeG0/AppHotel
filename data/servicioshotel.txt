@@ -1,1 +1,3 @@
 nombre;ubicacion;tarifaporpersona;diasdisp;horariosdisp 
+spa;zona humeda;50000;lunes,martes,miercoles,jueves,viernes,sabado,domingo;8:00-22:00
+guia turistico;fuera del hotel;30000;lunes,martes,miercoles,jueves,viernes;6:00-18:00

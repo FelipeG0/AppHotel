@@ -52,8 +52,7 @@ public class Login {
     }
 
     public static boolean iniciarsesion(String username, String password) throws FileNotFoundException, IOException {
-        //String username = input("Ingrese el nombre de usuario: \n");
-        //String password = input("Ingrese la clave: \n");
+        
 
         File archivo_usuarios = Hotel.getarchivousuarios();
         BufferedReader lector = new BufferedReader(new FileReader(archivo_usuarios));

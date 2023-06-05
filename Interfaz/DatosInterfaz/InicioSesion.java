@@ -123,4 +123,22 @@ public class InicioSesion extends JPanel{
 	private boolean autenticar(String usuario, String contrasena) throws FileNotFoundException, IOException {
 		return Login.iniciarsesion(usuario, contrasena);
 	}
+
+	public JTextField getUsuarioT() {
+		return usuarioT;
+	}
+
+	public void setUsuarioT(JTextField usuarioT) {
+		this.usuarioT = usuarioT;
+	}
+
+	public JPasswordField getContrasenaT() {
+		return contrasenaT;
+	}
+
+	public void setContrasenaT(JPasswordField contrasenaT) {
+		this.contrasenaT = contrasenaT;
+	}
+	
+	
 }

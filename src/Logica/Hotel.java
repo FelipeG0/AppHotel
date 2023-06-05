@@ -8,6 +8,9 @@ import java.util.*;
 import ContDatos.*;
 
 public class Hotel {
+	private static Admin admin;
+	private static Recepcionista recep;
+	private static Empleado empleado;
 	private static String nombreHotel;
 	private static Boolean parqueaderoPago;
 	private static Boolean piscina;
@@ -73,6 +76,12 @@ public class Hotel {
 		atributos.put("Boolean", booleans);
 		
 		br.close();
+
+		Hotel.admin = new Admin();
+		Hotel.recep = new Recepcionista();
+		Hotel.empleado = new Empleado();
+		
+		cargarDatos();
 		
         //estos archivos aun no estan creados y creo que es mejor ponerlos como atributos estaticos
         //String archivoconsumos;
@@ -98,6 +107,7 @@ public class Hotel {
     	actualizarArchivoReservas();
     	actualizarArchivoFacturas();
     	actualizarCaracteristicasHotel();
+    	actualizarArchivoHuespedes();
     }
     public void cargarhabitaciones(File archivo) throws FileNotFoundException, IOException {
 		BufferedReader br = new BufferedReader(new FileReader(archivo));
@@ -474,6 +484,21 @@ public class Hotel {
 	            	escritor.write(alimento.getNombre() + ";" + alimento.getTipo() + ";" + alimento.getTarifa()
 	            			+ ";" + alimento.getComidaDisp() + ";" + alimento.getLugarDisp() + "\n");
             	}
+            }
+            escritor.close();
+        } catch (IOException e) {
+            System.out.println("Error al crear el archivo.");
+            e.printStackTrace();
+        }
+    }
+    
+    public static void actualizarArchivoHuespedes() {
+    	try {
+            FileWriter escritor = new FileWriter(archivohuespedes);
+            escritor.write("documento;nombre;telefono;correo;edad;titular/acompañante \n");
+            for (Huesped set : mapaHuespedes.values()) {
+            	escritor.write(set.getDocumento()+ ";" + set.getNombre() + ";" + set.getTelefono() 
+            	+ ";" + set.getCorreo() + ";" + set.getEdad() + ";" + set.getTipo() + "\n");
             }
             escritor.close();
         } catch (IOException e) {

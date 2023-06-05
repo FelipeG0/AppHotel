@@ -1,90 +1,88 @@
 package DatosInterfaz;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.*;
 
-public class Modificartarifasp extends JFrame{
+import GUI.Ventana;
+import Logica.Admin;
 
-	private static final long serialVersionUID = 1L;
-	
-	public JPanel panel;
+import java.awt.*;
+import javax.swing.*;
 
-	public Modificartarifasp() {
-		setSize(500,250);
-		setTitle("Registrarse");
-		
-		setLocationRelativeTo(null);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		
-		iniciarcomp();
-	}
-	
-	private void iniciarcomp(){
-		paneles();
-		etiquetas();
-		botones();
-		cajasTexto();
-	}
-	
-	private void paneles(){
-		panel = new JPanel();
-		panel.setLayout(null);
-		this.getContentPane() .add(panel);
-	}
-	
-	private void etiquetas(){
-		panel = new JPanel();
-		
-		panel.setLayout(null);
-		this.getContentPane() .add(panel);
-		
-		JLabel label1 = new JLabel("Modificar Tarifas Platos/Bebidas",SwingConstants.CENTER);
-		label1.setBounds(100,20,300,23);
-		label1.setFont(new Font("Helvetica",Font.BOLD,18));
-		panel.add(label1);
+public class Modificartarifasp extends JPanel {
+	JComboBox<String> comboBox;
+	JTextField caja1;
 
-	} 
-	private void botones(){
-		JButton boton1 = new JButton("<");
-		boton1.setBounds(50,21,50,20);
-		boton1.setForeground(Color.BLACK);
-		boton1.setBackground(Color.WHITE);
-		boton1.setBorderPainted(false);
-		boton1.setOpaque(false);
-		boton1.setFont(new Font("Arial Black",Font.BOLD,18));
-		panel.add(boton1);
-		
-		JButton boton2 = new JButton("Seleccionar tipo de servicio  v");
-		boton2.setBounds(30,65,270,35);
-		boton2.setForeground(Color.WHITE);
-		boton2.setBackground(Color.GRAY);
-		boton2.setBorderPainted(false);
-		boton2.setFont(new Font("Helvetica",Font.BOLD,15));
-		panel.add(boton2);
-		
-		JButton boton3 = new JButton("Actualizar");
-		boton3.setBounds(30,130,400,40);
-		boton3.setForeground(Color.WHITE);
-		boton3.setBackground(Color.BLACK);
-		boton3.setBorderPainted(false);
-		boton3.setFont(new Font("Helvetica",Font.BOLD,18));
-		panel.add(boton3);
-		
+    public Modificartarifasp(Ventana ventana) {
+    	
+        setLayout(new BorderLayout(20,20));
+        
+        // Panel superior
+        JPanel panelSuperior = new JPanel(new BorderLayout());
+        panelSuperior.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        add(panelSuperior, BorderLayout.NORTH);
 
-	}
-	
+        // Botón "<-" (Regresar)
+        JButton botonRegresar = new JButton("<-");
+        botonRegresar.setForeground(Color.BLACK);
+        botonRegresar.setBackground(Color.WHITE);
+        botonRegresar.setBorderPainted(false);
+        botonRegresar.setOpaque(false);
+        botonRegresar.setFont(new Font("Arial Black", Font.BOLD, 10));
+        panelSuperior.add(botonRegresar, BorderLayout.WEST);
+        botonRegresar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                ventana.mostrarPantallaAdmin();
+            }
+        });
 
+        // Label "Modificar tarifas"
+        JLabel labelCrearHabitaciones = new JLabel("Modificar tarifas de los servicios", SwingConstants.CENTER);
+        labelCrearHabitaciones.setFont(new Font("Helvetica", Font.BOLD, 18));
+        panelSuperior.add(labelCrearHabitaciones, BorderLayout.CENTER);
 
-	private void cajasTexto(){
-	
-		JTextField caja1 = new JTextField();
-		caja1.setBounds(310,65,120,35);
-		caja1.setText("$ Valor");
-		panel.add(caja1);
-	
+        // Panel central
+        JPanel panelCentral = new JPanel(new FlowLayout(FlowLayout.CENTER, 30, 20));
+        add(panelCentral, BorderLayout.CENTER);
+        
+        // Etiqueta
+        JLabel label = new JLabel("Selecciona un valor:");
+        panelCentral.add(label);
 
-	}
-	
-	
+        // Lista desplegable (combobox)
+        comboBox = new JComboBox<>();
+        comboBox.addItem("Seleccionar");
+        comboBox.addItem("guia turistico");
+        comboBox.addItem("spa");
+        panelCentral.add(comboBox);
 
+        // Caja de texto
+        caja1 = new JTextField();
+        caja1.setPreferredSize(new Dimension(400, 50));
+        PH.setPlaceHolder(caja1, "Costo por persona");
+        panelCentral.add(caja1);
+        
+        // Panel inferior
+        JPanel panelInferior = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        panelInferior.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        add(panelInferior, BorderLayout.SOUTH);
+
+        // Botón de actualización
+        JButton boton3 = new JButton("Actualizar");
+        boton3.setForeground(Color.WHITE);
+        boton3.setBackground(Color.BLACK);
+        boton3.setBorderPainted(false);
+        boton3.setFont(new Font("Helvetica", Font.BOLD, 18));
+        panelInferior.add(boton3);
+        boton3.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                ventana.getAdminI().modificar_tarifa_servicio(comboBox.getSelectedItem().toString(), Integer.parseInt(caja1.getText()));      
+                comboBox.setSelectedItem("Seleccionar");
+                PH.setPlaceHolder(caja1, "Costo por persona");
+            }
+        });
+    }
 }

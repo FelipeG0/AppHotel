@@ -10,7 +10,7 @@ import javax.swing.JTextField;
 
 public class PH {
 	
-	static void setPlaceHolder(JTextField textField, String placeholder) {
+	public static void setPlaceHolder(JTextField textField, String placeholder) {
         textField.setForeground(Color.GRAY);
         textField.setText(placeholder);
 
@@ -33,7 +33,7 @@ public class PH {
         });
     }
 	
-	static void setPlaceHolderC(JPasswordField passwordField, String placeholder) {
+	public static void setPlaceHolderC(JPasswordField passwordField, String placeholder) {
         passwordField.setEchoChar((char) 0);
         passwordField.setText(placeholder);
         passwordField.setForeground(Color.GRAY);

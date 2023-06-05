@@ -1,1 +1,18 @@
 nombre;tipo;precio;comidadisp;lugardisp 
+hotdog;comida;10000;almuerzo,cena;habitacion,restaurante
+hamburguesa;comida;18000;almuerzo,cena;habitacion,restaurante
+papas;comida;8000;almuerzo,cena;habitacion,restaurante
+pasta;comida;24000;almuerzo,cena;habitacion,restaurante
+bandeja paisa;comida;32000;almuerzo;restaurante
+arroz con mariscos;comida;38000;almuerzo,cena;restaurante
+churrasco;comida;40000;almuerzo,cena;restaurante
+caldo de huevo;comida;20000;desayuno;restaurante
+cereal;comida;10000;desayuno,cena;habitacion,restaurante
+gaseosa;bebida;4000;almuerzo,cena;habitacion,restaurante
+agua;bebida;3000;desayuno,almuerzo,cena;habitacion,restaurante
+limonada;bebida;4500;almuerzo,cena;habitacion,restaurante
+cerveza;bebida;5000;almuerzo,cena;habitacion,restaurante
+chocolate;bebida;4000;desayuno;restaurante
+jugo naranja;bebida;4500;desayuno,almuerzo,cena;habitacion,restaurante
+cola y pola;bebida;4500;almuerzo, cena;bar
+CocaCola;bebida;5500;Almuerzo;Restaurante, 

@@ -1,96 +1,148 @@
 package DatosInterfaz;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.*;
+import GUI.Ventana;
+import Logica.Admin;
 
-public class Agghabitacion extends JFrame{
+public class Agghabitacion extends JDialog {
+	private Admin admin;
+    private JTextField nHab;
+    private JTextField piso;
+    private String tipo = "vacio";
+    private JCheckBox cocinaA;
+    private JCheckBox balconA;
+    private JCheckBox vistaA;
+    
 
-	private static final long serialVersionUID = 1L;
-	
-	public JPanel panel;
+    public Agghabitacion(Ventana ventana) {
+        super(ventana, "Crear Habitación", true);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setSize(450, 450);
+        setLocationRelativeTo(ventana);
 
-	public Agghabitacion() {
-		setSize(450,450);
-		setTitle("Registrarse");
-		
-		setLocationRelativeTo(null);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		
-		iniciarcomp();
-	}
-	
-	private void iniciarcomp(){
-		paneles();
-		etiquetas();
-		botones();
-		cajasTexto();
-	}
-	
-	private void paneles(){
-		panel = new JPanel();
-		panel.setLayout(null);
-		this.getContentPane() .add(panel);
-	}
-	
-	private void etiquetas(){
-		panel = new JPanel();
-		
-		panel.setLayout(null);
-		this.getContentPane() .add(panel);
-		
-		JLabel label1 = new JLabel("Agregar Habitación",SwingConstants.CENTER);
-		label1.setBounds(120,20,190,23);
-		label1.setFont(new Font("Helvetica",Font.BOLD,20));
-		panel.add(label1);
-	
-	} 
-	private void botones(){
-		
-		JButton boton2 = new JButton("Continuar");
-		boton2.setBounds(40,330,350,40);
-		boton2.setForeground(Color.WHITE);
-		boton2.setBackground(Color.BLACK);
-		boton2.setBorderPainted(false);
-		boton2.setFont(new Font("Helvetica",Font.BOLD,18));
-		panel.add(boton2);
-	}
+        JPanel panelDialogo = new JPanel(new BorderLayout());
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        JPanel panelBoton = new JPanel(new FlowLayout(FlowLayout.CENTER));
 
-	private void cajasTexto(){
-	
-		JTextField caja1 = new JTextField();
-		caja1.setBounds(35,70,360,40);
-		caja1.setText("Numero de Habitación");
-		panel.add(caja1);
-		
-		JTextField caja2 = new JTextField();
-		caja2.setBounds(35,130,220,40);
-		caja2.setText("Tipo de Habitacion");
-		panel.add(caja2);
-		
-		JTextField caja3 = new JTextField();
-		caja3.setBounds(270,130,125,40);
-		caja3.setText("Max Personas");
-		panel.add(caja3);
-		
-		JTextField caja4 = new JTextField();
-		caja4.setBounds(35,190,360,40);
-		caja4.setText("Caracteristicas");
-		panel.add(caja4);
-		
-		JTextField caja5 = new JTextField();
-		caja5.setBounds(35,250,220,40);
-		caja5.setText("$ Valor");
-		panel.add(caja5);
-		
-		JTextField caja6 = new JTextField();
-		caja6.setBounds(270,250,125,40);
-		caja6.setText("Piso");
-		panel.add(caja6);
-		
+        //Etiqueta
+        JLabel label1 = new JLabel("Agregar Habitación", SwingConstants.CENTER);
+        label1.setFont(new Font("Helvetica", Font.BOLD, 20));
+        panelDialogo.add(label1, BorderLayout.NORTH);
 
+        // Cajas de texto
+        nHab = new JTextField();
+        nHab.setPreferredSize(new Dimension(360, 40));
+        PH.setPlaceHolder(nHab, "Numero de Habitación");
+        panel.add(nHab);
 
-	}
-	
+        piso = new JTextField();
+        piso.setPreferredSize(new Dimension(220, 40));
+        PH.setPlaceHolder(piso, "Piso");
+        panel.add(piso);
 
+        JLabel etiqueta = new JLabel("Tipo de habitación: ");
+        etiqueta.setFont(new Font("Helvetica", Font.PLAIN, 15));
+
+        JPanel panelCheckbox = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        JCheckBox checkbox1 = new JCheckBox("Estandar");
+        checkbox1.setFont(new Font("Helvetica", Font.PLAIN, 12));
+        JCheckBox checkbox2 = new JCheckBox("Suite");
+        checkbox2.setFont(new Font("Helvetica", Font.PLAIN, 12));
+        JCheckBox checkbox3 = new JCheckBox("Suite Doble");
+        checkbox3.setFont(new Font("Helvetica", Font.PLAIN, 12));
+
+        panelCheckbox.add(etiqueta);
+        panelCheckbox.add(checkbox1);
+        panelCheckbox.add(checkbox2);
+        panelCheckbox.add(checkbox3);
+        panel.add(panelCheckbox);
+        
+        Map<JPanel, JCheckBox> cocina = booleanos("Tiene cocina integrada: ");
+        Map<JPanel, JCheckBox> balcon = booleanos("Tiene balcon:                 ");
+        Map<JPanel, JCheckBox> vista = booleanos("Tiene vista:                    ");   
+        
+        for (Map.Entry<JPanel, JCheckBox> items : cocina.entrySet()) {
+            panel.add(items.getKey());
+            cocinaA = items.getValue();            
+        }
+        for (Map.Entry<JPanel, JCheckBox> items : balcon.entrySet()) {
+            panel.add(items.getKey());
+            balconA = items.getValue();            
+        }
+        for (Map.Entry<JPanel, JCheckBox> items : vista.entrySet()) {
+            panel.add(items.getKey());
+            vistaA = items.getValue();            
+        }    
+
+        // Boton
+        JButton boton2 = new JButton("Crear");
+        boton2.setBounds(40, 330, 350, 40);
+        boton2.setForeground(Color.WHITE);
+        boton2.setBackground(Color.BLACK);
+        boton2.setBorderPainted(false);
+        boton2.setFont(new Font("Helvetica", Font.BOLD, 18));
+        boton2.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	admin = ventana.getAdminI();
+            	tipo = obtenerTipoHabitacion(checkbox1, checkbox2, checkbox3);                         
+                Boolean cocinaVar = obtenerValorCheckbox(cocinaA);
+                Boolean balconVar = obtenerValorCheckbox(balconA);
+                Boolean vistaVar = obtenerValorCheckbox(vistaA);
+                admin.crear_habitaciones(nHab.getText(), Integer.parseInt(piso.getText()), tipo, balconVar, vistaVar, cocinaVar, true);
+                dispose();
+            }
+        });
+        panelBoton.add(boton2);
+
+        panelDialogo.add(panel, BorderLayout.CENTER);
+        panelDialogo.add(panelBoton, BorderLayout.SOUTH);
+
+        setContentPane(panelDialogo);
+    }
+    
+    private Map<JPanel, JCheckBox> booleanos(String strEtiqueta) {
+        JLabel etiqueta = new JLabel(strEtiqueta);
+        etiqueta.setFont(new Font("Helvetica", Font.PLAIN, 15));
+
+        JPanel panelCheckbox = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        JCheckBox trueBox = new JCheckBox("Si");
+        trueBox.setFont(new Font("Helvetica", Font.PLAIN, 12));
+        JCheckBox falseBox = new JCheckBox("No");
+        falseBox.setFont(new Font("Helvetica", Font.PLAIN, 12));
+
+        panelCheckbox.add(etiqueta);
+        panelCheckbox.add(trueBox);
+        panelCheckbox.add(falseBox);
+        
+        Map<JPanel, JCheckBox> rta = new HashMap<>();
+        rta.put(panelCheckbox, trueBox);
+
+        return rta;
+    }
+    
+    private String obtenerTipoHabitacion(JCheckBox checkbox1, JCheckBox checkbox2, JCheckBox checkbox3) {
+        if (checkbox1.isSelected()) {
+            return "Estandar";
+        } else if (checkbox2.isSelected()) {
+            return "Suite";
+        } else if (checkbox3.isSelected()) {
+            return "Suite Doble";
+        } else {
+            return "vacio";
+        }
+    }
+
+    private Boolean obtenerValorCheckbox(JCheckBox checkBox) {
+        return checkBox.isSelected();
+    }
 }
+
+

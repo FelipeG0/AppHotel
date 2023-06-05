@@ -4,15 +4,19 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 import GUI.Ventana;
+import Logica.Admin;
 import Logica.Hotel;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class PanelAdmin extends JPanel {
+	Admin admin;
     
     public PanelAdmin(Ventana ventana) {
+    	admin = ventana.getAdminI();
     	setLayout(new BorderLayout()); 
     	
     	JPanel panelBotones = new JPanel();
@@ -40,8 +44,8 @@ public class PanelAdmin extends JPanel {
         JButton opcion2 = crearBoton("Actualizar las tarifas por tipo de habitación");
         opcion2.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent e) {
-				ventana.actualizarTarifas();
+			public void actionPerformed(ActionEvent e) {				
+				ventana.actualizarTarifas();			
 			}			
 		});
         panelBotones.add(opcion2);
@@ -49,7 +53,16 @@ public class PanelAdmin extends JPanel {
         opcion3.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ventana.verificarTarifas();
+				String msj = "";
+				ArrayList<String> problemas = admin.verificar_tarifas();
+				if (problemas.isEmpty()) {
+					JOptionPane.showMessageDialog(PanelAdmin.this, "No hay problemas con las tarifas estacblecidas", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+				}else {
+					for(String problema : problemas) {
+						msj += problema + "\n";
+					}
+					JOptionPane.showMessageDialog(PanelAdmin.this, msj, "Error", JOptionPane.ERROR_MESSAGE);
+				}				
 			}			
 		});
         panelBotones.add(opcion3);
@@ -91,6 +104,11 @@ public class PanelAdmin extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Hotel.actualizar_archivos();
+				InicioSesion inicioS = ventana.getInicioSesion();
+				JTextField usuarioT = inicioS.getUsuarioT();
+				JPasswordField contrasenaT = inicioS.getContrasenaT();;
+				PH.setPlaceHolder(usuarioT, "Ingrese el usuario");
+				PH.setPlaceHolderC(contrasenaT, "Ingrese la contraseña");
 				ventana.inicioSesion();
 				
 			}			

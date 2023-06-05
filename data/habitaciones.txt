@@ -1,1 +1,16 @@
 id;ubicacion(piso);tipo;tienebalcon;tienevista;tienecocina;disponible
+201;2;suite;true;false;true;false
+202;2;suite;true;false;true;false
+203;2;suite;true;false;true;true
+204;2;suite;true;false;true;true
+205;2;suite;true;false;true;true
+101;1;estandar;false;false;false;false
+102;1;estandar;false;false;true;true
+103;1;estandar;false;false;true;true
+301;3;suite doble;true;true;true;false
+104;1;estandar;false;false;true;true
+302;3;suite doble;true;true;true;false
+105;1;estandar;false;false;true;true
+303;3;suite doble;true;true;true;false
+304;3;suite doble;true;true;true;true
+305;3;suite doble;true;true;true;true

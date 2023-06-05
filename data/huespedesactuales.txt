@@ -1,16 +1,16 @@
-documento;nombre;telefono;correo;edad;titular/acompañante
-1012345678;Juan Pérez;3214567890;jperez@example.com;39;titular
-2034526378;María Gómez;3157894562;mgomez@example.com;40;acompañante
-3045678190;Pedro Hernández;3109876543;phernandez@example.com;40;titular
-4056789123;Carolina Sánchez;3206549871;csanchez@example.com;17;acompañante
-5067890234;Andrés Castro;3178906543;acastro@example.com;30;titular
-6078901345;Paola Torres;3101234567;ptorres@example.com;20;titular
-7089012456;Santiago Rueda;3216789456;srueda@example.com;15;acompañante
-8090123567;Ana Rojas;3187654321;arojas@example.com;30;acompañante
-9101234678;David Gutiérrez;3123456789;dgutierrez@example.com;24;titular
-1012345789;Sara González;3154321098;sgonzalez@example.com;25;titular
+documento;nombre;telefono;correo;edad;titular/acompañante 
 1113456890;Jorge Ramírez;3209876543;jramirez@example.com;31;acompañante
-1214567901;Mónica Suárez;3176543210;msuarez@example.com;32;titular
 1315679012;Felipe Castro;3104567890;fcastro@example.com;33;titular
-1416790123;Lucía Gómez;3213456789;lgomez@example.com;34;titular
+1214567901;Mónica Suárez;3176543210;msuarez@example.com;32;titular
+5067890234;Andrés Castro;3178906543;acastro@example.com;30;titular
 1517901234;Gabriel García;3167890123;ggarcia@example.com;12;titular
+3045678190;Pedro Hernández;3109876543;phernandez@example.com;40;titular
+9101234678;David Gutiérrez;3123456789;dgutierrez@example.com;24;titular
+2034526378;María Gómez;3157894562;mgomez@example.com;40;acompañante
+7089012456;Santiago Rueda;3216789456;srueda@example.com;15;acompañante
+4056789123;Carolina Sánchez;3206549871;csanchez@example.com;17;acompañante
+1012345678;Juan Pérez;3214567890;jperez@example.com;39;titular
+1012345789;Sara González;3154321098;sgonzalez@example.com;25;titular
+6078901345;Paola Torres;3101234567;ptorres@example.com;20;titular
+8090123567;Ana Rojas;3187654321;arojas@example.com;30;acompañante
+1416790123;Lucía Gómez;3213456789;lgomez@example.com;34;titular

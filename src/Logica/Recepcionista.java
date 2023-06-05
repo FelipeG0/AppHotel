@@ -12,12 +12,21 @@ import ContDatos.*;
 public class Recepcionista {
 	private Hotel hotel;
 	
-	Map<String, Habitacion> mapahabitaciones = Hotel.getMapa_habitaciones();
-	Map<Integer, Reserva> reservas = Hotel.getMapaReservas();
-	Map<String, Huesped> mapaHuespedes = Hotel.getMapaHuespedes();
-	Map<String, Integer> mapaCamas = Hotel.getMapaCamas();
-	Map<String, TipoHabitacion> mapaTipoHabs = Hotel.getMapa_tipos_habitaciones();
-	Map<String, TarifaTipoHabitacion> mapaTarifasHabs = Hotel.getMapaTarifasHabs();
+	private Map<String, Habitacion> mapahabitaciones = new HashMap<>();
+	private Map<Integer, Reserva> reservas = new HashMap<>();
+	private Map<String, Huesped> mapaHuespedes = new HashMap<>();
+	private Map<String, Integer> mapaCamas = new HashMap<>();
+	private Map<String, TipoHabitacion> mapaTipoHabs = new HashMap<>();
+	private Map<String, TarifaTipoHabitacion> mapaTarifasHabs = new HashMap<>();
+	
+	public Recepcionista() {
+		mapahabitaciones = Hotel.getMapa_habitaciones();
+		reservas = Hotel.getMapaReservas();
+		mapaHuespedes = Hotel.getMapaHuespedes();
+		mapaCamas = Hotel.getMapaCamas();
+		mapaTipoHabs = Hotel.getMapa_tipos_habitaciones();
+		mapaTarifasHabs = Hotel.getMapaTarifasHabs();
+	}
 	
 	public List<Habitacion> info_Habitaciones(String piso, String tipo, String balcon, String vista, String cocina, String disp) {
 	    List<Habitacion> habitacionesFiltradas = mapahabitaciones.values().stream()

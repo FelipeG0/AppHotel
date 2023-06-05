@@ -13,12 +13,13 @@ import java.time.LocalDate;
 
 public class Aplicacion{
 	private static Hotel hotel;
-	private static Admin admin = new Admin();
+	private static Admin admin;
 	private static Recepcionista recep = new Recepcionista();
     private static boolean loggedIn = false;
     private static int tipo_user = 0;
 
     public void mostrarMenu() throws FileNotFoundException, IOException {
+    	admin = new Admin();
         while (!loggedIn) {
         System.out.println("Bienvenido. Seleccione una opción (el número correspondiente):\n");
         System.out.println("1. Iniciar sesión\n");
@@ -27,7 +28,9 @@ public class Aplicacion{
         int respuesta = Integer.parseInt(input(""));
 
         if (respuesta == 1) {
-            //loggedIn = Login.iniciarsesion();
+        	String username = input("Ingrese el nombre de usuario: \n");
+            String password = input("Ingrese la clave: \n");
+            loggedIn = Login.iniciarsesion(username, password);
             if (loggedIn == true) {
                 tipo_user = Login.gettipo_usuario();
                 mostrarMenuLoggeado(loggedIn, tipo_user);
@@ -100,7 +103,8 @@ public class Aplicacion{
                         	ArrayList<String> problemas = admin.verificar_tarifas();
                         	for (int i = 0; i < problemas.size(); i++) {                        
                         		System.out.println(problemas.get(i));
-                        	}                    
+                        	}   
+                        	//System.out.println(admin.verificar_tarifas());
                         }
                         if (opcion_seleccionada == 6) {
                         	String opcion_servicio = input("Seleccione el servicio para actualizar la tarifa por persona: \n"
@@ -206,6 +210,7 @@ public class Aplicacion{
                 			infoTarjeta[1] = nombrePropietario;
                 			infoTarjeta[2] = fechaExp;
                 			infoTarjeta[3] = cvc;
+                			System.out.println(pasarela.toString());
                 			System.out.println(recep.pagoYfactura(documentoTitular, pasarela, infoTarjeta));
                         }
                         if (opcion_seleccionada == 8) {
@@ -249,7 +254,7 @@ public class Aplicacion{
         System.out.println("0. Salir\n");
     }
 
-    public static void mostrarMenuRecep() {
+    public static void mostrarMenuRecep() {             
         System.out.println("1. Consultar el inventario y las caracteristicas de las habitaciones. \n");
         System.out.println("2. Consultar Habitación por ID.\n");
         System.out.println("3. Crear huesped. \n");

@@ -23,7 +23,9 @@ public class PanelCaracteristicasHotel extends JDialog{
         setSize(1000, 200);
         setLocationRelativeTo(ventana);
         
-        JPanel panelPrincipal = new JPanel(new BorderLayout());        
+        JPanel panelPrincipal = new JPanel(new BorderLayout());  
+        
+        
         JLabel labelTitulo = new JLabel("Características");
         labelTitulo.setFont(new Font("Helvetica", Font.BOLD, 20));
         labelTitulo.setHorizontalAlignment(SwingConstants.CENTER);
@@ -100,6 +102,7 @@ public class PanelCaracteristicasHotel extends JDialog{
                         }
                     }
                 }
+                dispose();
             }
         });
         JPanel panelBoton = new JPanel(new FlowLayout(FlowLayout.CENTER));
