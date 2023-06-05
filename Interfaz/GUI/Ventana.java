@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Map;
 
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -15,10 +16,12 @@ import Logica.Admin;
 import Logica.Hotel;
 import Logica.Recepcionista;
 import PanelRecep.DialogoHabs;
+import PanelRecep.PanelHabId;
 import PanelRecep.PanelHabitaciones;
 import PanelRecep.PanelHuesped;
 import PanelRecep.PanelPago;
 import PanelRecep.PanelRecepcionista;
+import PanelRecep.PanelReserva;
 import PanelRecep.PanelHuesped;
 
 public class Ventana extends JFrame{
@@ -43,6 +46,8 @@ public class Ventana extends JFrame{
 	private DialogoHabs filtroHabs;
 	private PanelHabitaciones habsP;
 	private PanelHuesped huespedP;
+	private PanelHabId habId;
+	private PanelReserva reserva;
 	private PanelPago pago;
 	
 	
@@ -74,6 +79,8 @@ public class Ventana extends JFrame{
 		this.habitacionesArrayList = new ArrayList<>(Hotel.getMapa_habitaciones().values());
 		this.habsP = new PanelHabitaciones(habitacionesArrayList, this);
 		this.huespedP = new PanelHuesped(this);
+		this.habId = new PanelHabId(habitacionesArrayList, this);
+		this.reserva = new PanelReserva(this);
 		this.pago = new PanelPago(this);
 		
 
@@ -126,6 +133,12 @@ public class Ventana extends JFrame{
 	}
 	public void crearHuesped() {
 		mostrarPanel(huespedP);
+	}
+	public void habPorId() {
+		mostrarPanel(habId);
+	}
+	public void reserva() {
+		mostrarPanel(reserva);
 	}
 	public void pantallaPago() {
 		mostrarPanel(pago);

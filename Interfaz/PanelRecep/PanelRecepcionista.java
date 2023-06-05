@@ -54,7 +54,7 @@ public class PanelRecepcionista extends JPanel{
         opcion2.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {				
-				
+				ventana.habPorId();
 			}			
 		});
         panelBotones.add(opcion2);
@@ -70,7 +70,7 @@ public class PanelRecepcionista extends JPanel{
         opcion4.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ventana.tarifasServicios();
+				ventana.reserva();
 			}			
 		});
         panelBotones.add(opcion4);

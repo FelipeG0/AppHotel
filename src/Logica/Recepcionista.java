@@ -49,7 +49,6 @@ public class Recepcionista {
 		mapaHuespedes.put(documento, huesped);
 	}
 	public String nuevaReserva(String documentos, String tipoHab, String fechaIn, String fechaFin) throws Exception{
-		
 		try {
 			if (documentos.isEmpty() || tipoHab.isEmpty() || fechaIn.isEmpty() || fechaFin.isEmpty()) {
 				throw new Exception("\nAlguno de los campos necesarios no ha sido proporcionado, verifique e intente de nuevo. \n");
@@ -72,17 +71,25 @@ public class Recepcionista {
         Reserva.setUltimoIdReserva(reserva.getIdReserva());
         String[] set = documentos.split("-");
 		for (String doc : set) {
-			Huesped h = Hotel.getMapaHuespedes().get(doc);
-			if (h.getTipo().equals("titular")) {
-				reserva.setTitular(h);
-			} else {
-				reserva.agregarHuesped(h);
-			}
-			if (h.getEdad() < 18) {
-	    		reserva.setNinos(reserva.getNinos() + 1);
-	    	}
+			Huesped h = null;
+			try {
+				h = Hotel.getMapaHuespedes().get(doc);	
+				if (h.getTipo().equals("titular")) {
+					reserva.setTitular(h);
+				} else {
+					reserva.agregarHuesped(h);
+				}
+				if (h.getEdad() < 18) {
+		    		reserva.setNinos(reserva.getNinos() + 1);
+		    	}
+			}catch(Exception e) {
+				 return "No existe";
+			}			
 		}
-		List<Habitacion> habs = info_Habitaciones("",tipoHab,"","","","true");
+		List<Habitacion> habs = new ArrayList<>();
+		for (String subcadena : tipoHab.split("-")) {
+		    habs.addAll(info_Habitaciones("",subcadena,"","","","true"));
+		}
 		int huespedesRestantes = set.length;
 		int capacidad = mapaTipoHabs.get(tipoHab).getCapacidad_maxima();
 		int cantidadHabitacionesNecesarias = (int) Math.ceil((double) huespedesRestantes / capacidad);
