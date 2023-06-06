@@ -47,6 +47,7 @@ public class Recepcionista {
 	public void crearHuespued(String documento, String nombre, String telefono, String correo, int edad, String tipo) {
 		Huesped huesped = new Huesped(documento, nombre, telefono, correo, edad, tipo);
 		mapaHuespedes.put(documento, huesped);
+		Hotel.actualizar_archivos();
 	}
 	public String nuevaReserva(String documentos, String tipoHab, String fechaIn, String fechaFin) throws Exception{
 		try {
@@ -120,6 +121,7 @@ public class Recepcionista {
 			return e.getMessage();
 		}
 		reservas.put(reserva.getIdReserva(), reserva);  
+		Hotel.actualizar_archivos();
 		return reserva.toString();
 	}
 	
@@ -150,6 +152,7 @@ public class Recepcionista {
 		if (reserva != null) {
 			if (fechaActual.isBefore(fechaIn)) {
 				reservas.remove(reserva.getIdReserva());
+				Hotel.actualizar_archivos();
 				msj = "\nReserva cancelada con exito. \n";
 			}
 		} else {
@@ -198,6 +201,7 @@ public class Recepcionista {
 		} else {
 			msj = "Error procesando el pago. \n";
 		}
+		Hotel.actualizar_archivos();
 		return msj;
 	}
 	

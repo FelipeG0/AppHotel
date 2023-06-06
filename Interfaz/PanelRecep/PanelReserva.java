@@ -1,24 +1,16 @@
 package PanelRecep;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Font;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JRadioButton;
-import javax.swing.SwingConstants;
+import java.time.*;
+import javax.swing.*;
 
 import DatosInterfaz.Agghabitacionarchivo;
 import DatosInterfaz.PH;
 import GUI.Ventana;
 import Logica.Recepcionista;
 
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JButton;
-import javax.swing.JTextField;
+
 
 public class PanelReserva extends JPanel{
 	private Recepcionista recep;

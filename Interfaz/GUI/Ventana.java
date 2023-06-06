@@ -52,7 +52,6 @@ public class Ventana extends JFrame{
 	
 	
 	public Ventana() throws IOException, IOException {
-		//this.hotel = hotel;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(600,600);
 		setLocationRelativeTo(null);

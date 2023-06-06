@@ -7,7 +7,6 @@ import java.util.*;
 
 import ContDatos.*;
 
-
 public class Admin {
 	private Hotel hotel;
 	private Map<String, Habitacion> habitaciones = new HashMap<>();
